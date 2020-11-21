@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Online Calculator</title>
+
+    <!-- Materilize -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- User -->
+    <link rel="stylesheet" href="/style.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="js/syntax.js" defer></script>
+    <script src="js/library.js" defer></script>
+    <script src="js/preprocessor.js" defer></script>
+    <script src="js/compiler.js" defer></script>
+    <script src="js/exp_linter.js" defer></script>
+
+    <!-- Angular JS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+  </head>
+
+  <body>
+    <nav class="nav-extended" style="background: #1d2933">
+      <div class="nav-wrapper">
+        <h3 id="main-heading">Online Calculator</h3>
+      </div>
+      <div class="nav-content">
+        <ul class="tabs tabs-transparent tabs-fixed-width">
+          <li class="tab"><a href="index.html">Eval</a></li>
+          <li class="tab"><a class="active" href="#">Exps</a></li>
+          <li class="tab"><a href="statistics.html">Stat</a></li>
+          <li class="tab"><a href="about.html">Abt</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div style="margin: 2%">
+      <h4 style="color: white; text-align: center">Expressions</h4>
+      <br />
+      <center>
+        <h4 class="result" id="exp-result"></h4>
+      </center>
+
+      <center>
+        <input
+          class="input flow-text"
+          type="text"
+          id="exp-input"
+          name="calculation"
+          placeholder="expression to consider"
+          oninput="startExp()"
+        />
+      </center>
+
+      <div id="var-car"></div>
+
+      <center>
+        <button onclick="clearExp()" class="btn purple darken-4 waves-effect waves-light">
+          Clear
+        </button>
+      </center>
+
+      <br/>
+      <center style="color: white">Single variable calculus: work in progress</center>
+      <div class="row">
+        <div class="col s6">
+          <input
+          class="input flow-text"
+          type="number"
+          id="diff-input"
+          name="calculation"
+          placeholder="Differentiate at"
+          oninput="startExp()"
+        />
+          <center>
+            <button class="btn purple darken-4">Differentiate</button>
+          </center>
+        </div>
+        <div class="col s6">
+            <input
+            class="input flow-text"
+            type="number"
+            id="int-upper"
+            name="calculation"
+            placeholder="Upper limit"
+            oninput="startExp()"
+          />
+            <input
+            class="input flow-text"
+            type="number"
+            id="int-lower"
+            name="calculation"
+            placeholder="Lower limit"
+            oninput="startExp()"
+          />
+          <center>
+            <button class="btn purple darken-4">Integrate</button>
+          </center>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-left: 2%">
+      <p>
+        <label>
+          <input
+            name="mode"
+            type="radio"
+            onchange="toggles()"
+            value="degree_mode"
+            checked
+          />
+          <span>Degree mode</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input
+            name="mode"
+            type="radio"
+            onchange="toggles()"
+            value="radian_mode"
+          />
+          <span>Radian mode</span>
+        </label>
+      </p>
+    </div>
+    <br />
+
+    <div style="margin-left: 2%">
+      <p>
+        <label>
+          <input
+            name="display-style"
+            type="radio"
+            onchange="toggles()"
+            value="normal"
+            checked
+          />
+          <span>Normal notation</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input
+            name="display-style"
+            type="radio"
+            onchange="toggles()"
+            value="scientific"
+          />
+          <span>Scientific notation</span>
+        </label>
+      </p>
+    </div>
+    <br />
+
+    <div class="row" style="margin-left: 3%">
+      <p style="color: white" id="prec-display"></p>
+      <div class="col s2">
+        <button class="btn purple darken-4" onclick="increasePrec()" id="prec-increase"><i class="material-icons">add_circle</i></button>
+      </div>
+      <div class="col s2">
+        <button class="btn purple darken-4" onclick="decreasePrec()" id="prec-decrease"><i class="material-icons">remove_circle</i></button>
+      </div>
+    </div>
+
+    <div style="margin: 3%; color: white">
+      <hr />
+
+      <h3 style="text-align: center">Predefined expressions</h3>
+      <ol>
+        <li>
+          <b>Simple Interest</b><br />
+          <p
+            style="
+              font-family: 'Courier New', Courier, monospace;
+              text-align: center;
+            "
+          >
+            PRT / 100
+          </p>
+          <center>
+            <button onclick="loadExp('simple interest')" class="btn purple darken-4 pulse">Load</button>
+          </center>
+        </li>
+        <li>
+          <b>Compound Interest</b><br />
+          <p
+            style="
+              font-family: 'Courier New', Courier, monospace;
+              text-align: center;
+            "
+          >
+            P * (1 + R/100)^T
+          </p>
+          <center>
+            <button onclick="loadExp('compound interest')" class="btn purple darken-4 pulse">Load</button>
+          </center>
+        </li>
+        <li>
+          <b>Density of unit cell</b><br />
+          <p
+            style="
+              font-family: 'Courier New', Courier, monospace;
+              text-align: center;
+            "
+          >
+            d = Z * M / a^3 * Na
+          </p>
+          <center>
+            <button onclick="loadExp('density-unit-cell')" class="btn purple darken-4 pulse">Load</button>
+          </center>
+        </li>
+        <li>
+          <b>Time dilation</b><br />
+          <p
+            style="
+              font-family: 'Courier New', Courier, monospace;
+              text-align: center;
+            "
+          >
+            t = t0 / sqrt(1-v^2/c^2)
+          </p>
+          <center>
+            <button onclick="loadExp('time-dilation')" class="btn purple darken-4 pulse">Load</button>
+          </center>
+        </li>
+      </ol>
+
+      <p style="text-align: center">Developed by ChanRT</p>
+    </div>
+  </body>
+</html>

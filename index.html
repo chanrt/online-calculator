@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Online Calculator</title>
+
+    <!-- Materilize -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- User -->
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="js/syntax.js" defer></script>
+    <script src="js/library.js" defer></script>
+    <script src="js/preprocessor.js" defer></script>
+    <script src="js/compiler.js" defer></script>
+    <script src="js/eval_linter.js" defer></script>
+
+    <!-- Angular JS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+  </head>
+
+  <body>
+    <nav class="nav-extended" style="background: #1d2933">
+      <div class="nav-wrapper">
+        <h3 id="main-heading">Online Calculator</h3>
+      </div>
+      <div class="nav-content">
+        <ul class="tabs tabs-transparent tabs-fixed-width">
+          <li class="tab"><a class="active" href="#">Eval</a></li>
+          <li class="tab"><a href="expressions.html">Exps</a></li>
+          <li class="tab"><a href="statistics.html">Stat</a></li>
+          <li class="tab"><a href="about.html">Abt</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div style="margin: 2%">
+      <h4 style="color: white; text-align: center">Evaluator</h4>
+      <br />
+      <center>
+        <h4 class="result" id="eval-result"></h4>
+      </center>
+
+      <center>
+        <input
+          class="input flow-text"
+          type="text"
+          id="eval-input"
+          name="calculation"
+          placeholder="expression to evaluate"
+          oninput="startEval()"
+        />
+      </center>
+      <center>
+        <button onclick="transferAns()" class="btn purple darken-4 waves-effect waves-light">
+          Transfer
+        </button>
+        <button onclick="clearEval()" class="btn purple darken-4 waves-effect waves-light">
+          Clear
+        </button>
+      </center>
+    </div>
+
+    <div style="margin-left: 2%">
+      <p>
+        <label>
+          <input
+            name="mode"
+            type="radio"
+            onchange="startEval()"
+            value="degree_mode"
+            checked
+          />
+          <span>Degree mode</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input
+            name="mode"
+            type="radio"
+            onchange="startEval()"
+            value="radian_mode"
+          />
+          <span>Radian mode</span>
+        </label>
+      </p>
+    </div>
+    <br />
+
+    <div style="margin-left: 2%">
+      <p>
+        <label>
+          <input
+            name="display-style"
+            type="radio"
+            onchange="startEval()"
+            value="normal"
+            checked
+          />
+          <span>Normal notation</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input
+            name="display-style"
+            type="radio"
+            onchange="startEval()"
+            value="scientific"
+          />
+          <span>Scientific notation</span>
+        </label>
+      </p>
+    </div>
+    <br />
+
+    <div class="row" style="margin-left: 3%">
+      <p style="color: white" id="prec-display"></p>
+      <div class="col s1">
+        <a class="waves-effect waves-circle waves-light btn-large" onclick="increasePrec()" id="prec-increase"><i class="material-icons">add_circle</i></a>
+      </div>
+      <div class="col s1">
+        <a class="waves-effect waves-circle waves-light btn-large" onclick="decreasePrec()" id="prec-decrease"><i class="material-icons">remove_circle</i></a>
+      </div>
+    </div>
+
+    <div style="margin: 3%; color: white">
+      <hr />
+      <br />
+
+      <h3 style="text-align: center">Examples</h3>
+      <p style="text-align: center">Try these out!</p>
+      <ol>
+        <li>
+          <b>Cascading in action</b><br />
+          See if this works with other operations!
+          <p
+            style="
+              font-family: 'Courier New', Courier, monospace;
+              text-align: center;
+            "
+          >
+            lcm 6*2 10+3 4^2
+          </p>
+          <center>
+            <button class="btn purple darken-4 pulse" onclick="calculate(1)">Calculate</button>
+          </center>
+          <br>
+        </li>
+        <li>
+          <b>A Trigonometric Identity</b><br />
+          Try changing the angle for both operators and see if you get the same
+          answer<br />
+          <p
+            style="
+              font-family: 'Courier New', Courier, monospace;
+              text-align: center;
+            "
+          >
+            (sin42)^2 + (cos42)^2
+          </p>
+          <center>
+            <button class="btn purple darken-4 pulse" onclick="calculate(2)">Calculate</button>
+          </center>
+          <br>
+        </li>
+        <li>
+          <b>The Speed of light</b><br />
+          The formula used to obtain speed of light in vacuum, from the
+          impedance of vacuum towards electric and magnetic fields<br />
+          <p
+            style="
+              font-family: 'Courier New', Courier, monospace;
+              text-align: center;
+            "
+          >
+            1/sqrt(#mvp * #evp)
+          </p>
+          <center>
+            <button class="btn purple darken-4 pulse" onclick="calculate(3)">Calculate</button>
+          </center>
+          <br>
+        </li>
+      </ol>
+
+      <br />
+      <hr />
+      <br />
+
+      <h3 style="text-align: center">Functions</h3>
+      <ol>
+        <li>
+          <b>Basic Arithmetic</b><br />
+          Addition (+), Subtraction (-), Multiplication (*), Division (/), Floor
+          Division (//), Reciprocal (~), Float supported Modulus (%)
+        </li>
+        <br />
+        <li>
+          <b>Step functions</b><br />
+          Floor function (floor), Ceil function (ceil), Signum function (sign), Fractional part (fractional), Absolute value (abs)
+        </li>
+        <br />
+        <li>
+          <b>Powers and Roots</b><br />
+          Power (^), Square root (sqrt), Cube root (cbrt), n-th root (^~)
+        </li>
+        <br />
+        <li>
+          <b>Combinatoric Functions</b><br />
+          Factorial (!), Permutation (P), Combination (C)
+        </li>
+        <br />
+        <li>
+          <b>Trigonometric Functions</b><br />
+          Sine (sin), Cosine (cos), Tangent (tan), Cosecant (cosec), Secant
+          (sec), Cotangent (cot)
+        </li>
+        <br />
+        <li>
+          <b>Inverse Trigonometric Functions</b><br />
+          Sine inverse (arcsin), Cosine inverse (arccos), Tangent inverse
+          (arctan)
+        </li>
+        <br />
+        <li>
+          <b>Logarithmic Functions</b><br />
+          Natural Logarithm (ln), Log base 10 (log), Logarithm (log_&lt;base&gt;
+          &lt;number&gt;), Inverse of Natural Logarithm (antiln), Inverse of
+          Logarithm (antilog_&lt;base&gt; &lt;number&gt;)
+        </li>
+        <br />
+        <li>
+          <b>Hyperbolic Functions</b><br />
+          Hyperbolic Sine (sinh), Hyperbolic Cosine (cosh), Hyperbolic Tangent
+          (tanh)
+        </li>
+      </ol>
+
+      <br />
+      <hr />
+      <br />
+
+      <h3 style="text-align: center">Constants</h3>
+      <ol>
+        <li>
+          <b>Universal Constants</b><br />
+          Speed of light in vacuum (#c), Newtonian constant of Gravitation (#G),
+          Planck's constant (#h), Reduced Planck's constant (#rh), Gas constant
+          (#R)
+        </li>
+        <br />
+        <li>
+          <b>Mathematical Constants</b><br />
+          Pi (#pi), Euler's number (#e), Golden Ratio (#gr)
+        </li>
+        <br />
+        <li>
+          <b>Atomic and Nuclear constants</b><br />
+          Electron mass (#e_mass), Proton mass (#p_mass), Neutron mass
+          (#n_mass), Bohr radius (#bohr_rad), Rydberg constant (#ryd), Fine
+          structured constant (#fsc), Hartree energy (#he)
+        </li>
+        <br />
+        <li>
+          <b>Physio-Chemical constants</b><br />
+          Atomic mass unit (#amu), Avogadro's number (#N), Boltzmann constant
+          (#kb), Faraday constant (#F), first (#c_one) and second (#c_two)
+          radiation constants, Stefan Boltzmann constant (#sb), Wien's
+          displacement law constant (#wdl)
+        </li>
+        <br />
+        <li>
+          <b>Electromagnetic constants</b><br />
+          Electron's charge (#ec), Coulomb's constant (#kc), Vacuum Permeability
+          (#mvp), Vacuum Permittivity (#evp), Bohr magneton (#bohr_magn),
+          Nuclear magneton (#nuc_magn), Impedance of vacuum (#Z), Von Klitzing
+          constant (#vkc)
+        </li>
+      </ol>
+
+      <br />
+      <hr />
+      <br />
+
+      <p style="text-align: center">Developed by ChanRT</p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+body {
+    background: #071720;
+}
+
+#main-heading {
+    color: white;
+    text-align: center;
+    margin-top: 0px;
+    padding: 10px;
+}
+
+.result {
+    color: white;
+    background: #1d2933;
+    padding: 10px;
+}
+
+.input {
+    height: fit-content;
+    size: 50;
+    color:  white;
+    background:  #1d2933;
+    
+    text-align: center;
+    margin-top: 20px;
+}
+
+#prec-increase {
+    background: #1d2933;
+    color: white;
+    padding: 8px;
+}
+
+#prec-decrease {
+    background: #1d2933;
+    color: white;
+    padding: 8px;
+}
+
+.button:hover {
+    color: #003e33
+}
+
+
+
+
+
+

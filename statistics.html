@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Online Calculator</title>
+
+  <!-- Materilize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <!-- User -->
+  <link rel="stylesheet" href="style.css">
+  <script src="js/syntax.js" defer></script>
+  <script src="js/library.js" defer></script>
+  <script src="js/preprocessor.js" defer></script>
+  <script src="js/stats.js" defer></script>
+  <script src="js/stats_linter.js" defer></script>
+
+  <!-- Angular JS-->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+</head>
+
+<body>
+
+  <nav class="nav-extended" style="background: #1d2933;">
+    <div class="nav-wrapper">
+      <h3 id="main-heading">Online Calculator</h3>
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent tabs-fixed-width">
+        <li class="tab"><a href="index.html">Eval</a></li>
+        <li class="tab"><a href="expressions.html">Exps</a></li>
+        <li class="tab"><a class="active" href="#">Stat</a></li>
+        <li class="tab"><a href="about.html">Abt</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div style="margin: 2%;">
+    <h4 style="color: white; text-align: center;">Statistics</h4>
+    <br>
+    <h4 style="color: white">1) Mean and Standard Deviation</h4>
+    <center>
+      <h4 class="result" id="mean-result"></h4>
+    </center>
+
+    <center>
+      <input class="input" type="text" pattern="[0-9]*" id="mean-input" name="calculation" placeholder="type numbers separated by spaces"
+        oninput="startMean()">
+    </center>
+
+    <p>
+      <label>
+        <input name="correction" type="radio" onchange="startMean()" value="bessel" />
+        <span>Consider Bessel's correction</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input name="correction" type="radio" onchange="startMean()" value="no_bessel" checked/>
+        <span>Do not consider Bessel's correction</span>
+      </label>
+    </p>
+
+    <div class="row" style="margin-left: 2%;">
+      <p style="color: white" id="prec-display">
+      </p>
+      <div class="col s2">
+        <button onclick="increasePrec()" id="prec-increase">+</button>
+      </div>
+      <div class="col s2">
+        <button onclick="decreasePrec()" id="prec-decrease">-</button>
+      </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+
+    <h4 style="color: white">2) Error Analysis</h4>
+    <center>
+      <h4 class="result" id="error-result"></h4>
+    </center>
+
+    <center>
+      <input class="input" type="text" pattern="[0-9]*" id="error-input" name="calculation" placeholder="type numbers separated by spaces"
+        oninput="startError()">
+    </center>
+
+    <div class="row" style="margin-left: 2%;">
+      <p style="color: white" id="prec-display">
+      </p>
+      <div class="col s2">
+        <button onclick="increasePrec()" id="prec-increase">+</button>
+      </div>
+      <div class="col s2">
+        <button onclick="decreasePrec()" id="prec-decrease">-</button>
+      </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+
+    <p style="text-align: center; color: white">Developed by ChanRT</p>
+  </div>
+
+</body>
+
+</html>
