@@ -1,37 +1,51 @@
-Welcome to Glitch
-=================
+[Click here to visit online calculator](http://online-calculator.glitch.me/index.html)
 
-Click `Show` in the header to see your app live. Updates to your code will instantly deploy and update live.
+Online Calculator features:
 
-**Glitch** is the friendly community where you'll build the app of your dreams. Glitch lets you instantly create, remix, edit, and host an app, bot or site, and you can invite collaborators or helpers to simultaneously edit code with you.
+1) Evaluator: Adjust precision, change display between normal and scientific mode, change between degree and radian mode
 
-Find out more [about Glitch](https://glitch.com/about).
+---> Functions <---
 
+    Basic Arithmetic
+    Addition (+), Subtraction (-), Multiplication (*), Division (/), Floor Division (//), Reciprocal (~), Float supported Modulus (%)
 
-Your Project
-------------
+    Step functions
+    Floor function (floor), Ceil function (ceil), Signum function (sign), Fractional part (fractional), Absolute value (abs)
 
-### ← README.md
+    Powers and Roots
+    Power (^), Square root (sqrt), Cube root (cbrt), n-th root (^~)
 
-That's this file, where you can tell people what your cool website does and how you built it.
+    Combinatoric Functions
+    Factorial (!), Permutation (P), Combination (C)
 
-### ← index.html
+    Trigonometric Functions
+    Sine (sin), Cosine (cos), Tangent (tan), Cosecant (cosec), Secant (sec), Cotangent (cot)
 
-Where you'll write the content of your website. 
+    Inverse Trigonometric Functions
+    Sine inverse (arcsin), Cosine inverse (arccos), Tangent inverse (arctan)
 
-### ← style.css
+    Logarithmic Functions
+    Natural Logarithm (ln), Log base 10 (log), Logarithm (log_<base> <number>), Inverse of Natural Logarithm (antiln), Inverse of Logarithm (antilog_<base> <number>)
 
-CSS files add styling rules to your content.
+    Hyperbolic Functions
+    Hyperbolic Sine (sinh), Hyperbolic Cosine (cosh), Hyperbolic Tangent (tanh)
 
-### ← script.js
+---> Constants <---
 
-If you're feeling fancy you can add interactivity to your site with JavaScript.
+    Universal Constants
+    Speed of light in vacuum (#c), Newtonian constant of Gravitation (#G), Planck's constant (#h), Reduced Planck's constant (#rh), Gas constant (#R)
 
-### ← assets
+    Mathematical Constants
+    Pi (#pi), Euler's number (#e), Golden Ratio (#gr)
 
-Drag in `assets`, like images or music, to add them to your project
+    Atomic and Nuclear constants
+    Electron mass (#e_mass), Proton mass (#p_mass), Neutron mass (#n_mass), Bohr radius (#bohr_rad), Rydberg constant (#ryd), Fine structured constant (#fsc), Hartree energy (#he)
 
-Made by [Glitch](https://glitch.com/)
--------------------
+    Physio-Chemical constants
+    Atomic mass unit (#amu), Avogadro's number (#N), Boltzmann constant (#kb), Faraday constant (#F), first (#c_one) and second (#c_two) radiation constants, Stefan Boltzmann constant (#sb), Wien's displacement law constant (#wdl)
 
-\ ゜o゜)ノ
+    Electromagnetic constants
+    Electron's charge (#ec), Coulomb's constant (#kc), Vacuum Permeability (#mvp), Vacuum Permittivity (#evp), Bohr magneton (#bohr_magn), Nuclear magneton (#nuc_magn), Impedance of vacuum (#Z), Von Klitzing constant (#vkc)
+
+2) Expressions: 26 variables supported
+3) Statistics: Mean and median, error analysis under development
